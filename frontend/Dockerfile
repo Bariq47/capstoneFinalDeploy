@@ -10,13 +10,22 @@ RUN npm run build
 #PHP + Apache
 FROM php:8.3-apache
 
+# RUN apt-get update && apt-get install -y \
+#     libzip-dev zip unzip curl \
+#     libpng-dev libjpeg-dev libfreetype6-dev \
+#     libicu-dev \
+#     && docker-php-ext-configure gd --with-freetype --with-jpeg \
+#     && docker-php-ext-install zip gd intl \
+#     && a2enmod rewrite
+
 RUN apt-get update && apt-get install -y \
-    libzip-dev zip unzip curl \
+    libzip-dev zip unzip curl git \
     libpng-dev libjpeg-dev libfreetype6-dev \
     libicu-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install zip gd intl \
     && a2enmod rewrite
+
 
 # Fix DocumentRoot Laravel
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' \
