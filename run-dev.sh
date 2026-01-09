@@ -9,10 +9,10 @@ docker exec capstone-backend php artisan key:generate --force
 docker exec capstone-frontend php artisan key:generate --force
 
 docker exec capstone-backend php artisan migrate --force
-docker exec capstone-backend php artisan migrate:fresh --seed
+docker exec capstone-backend php artisan migrate:fresh --seed --force
 
-docker exec capstone-backend php artisan optimize
-docker exec capstone-frontend php artisan optimize
+# docker exec capstone-backend php artisan optimize
+# docker exec capstone-frontend php artisan optimize
 
 docker compose exec frontend php artisan optimize:clear
 
