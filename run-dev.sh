@@ -14,4 +14,7 @@ docker exec capstone-backend php artisan migrate:fresh --seed
 docker exec capstone-backend php artisan optimize
 docker exec capstone-frontend php artisan optimize
 
+docker compose exec frontend php artisan optimize:clear
+
+
 echo "DEPLOY SUCCESS"
