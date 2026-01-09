@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: capstone-frontend
+    ports:
+      - "8081:80"
+    networks:
+      - capstone-net
+
+  backend:
+    build: ./backend
+    container_name: capstone-backend
+    ports:
+      - "8082:80"
+    depends_on:
+      - db
+    networks:
+      - capstone-net
+
+  db:
+    image: mysql:8.0
+    container_name: capstone-db
+    environment:
+      MYSQL_DATABASE: capstonesia
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - capstone-net
+
+volumes:
+  dbdata:
+
+networks:
+  capstone-net:
